@@ -14,9 +14,10 @@ ReSocks 让你可以带上自己的 SOCKS5 代理——无论是住宅代理、�
 
 ![ReSocks 工作原理](./public/images/how-it-works-zh.svg)
 
+**设置按应用和按网站的规则，让指定的应用或域名走代理，或指定直连。**
+
 ![按应用或网站智能分流](./public/images/smart-routing-zh.svg)
 
-设置按应用和按网站的规则，让指定的应用或域名走代理，其余流量直连。
 
 ReSocks 客户端基于 Flutter 构建界面，核心网络引擎使用 C 编写，安装包体积不超过 50MB，原生支持 macOS、Windows、Linux、Android、鸿蒙和 iOS 平台。
 

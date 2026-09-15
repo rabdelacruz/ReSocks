@@ -14,9 +14,9 @@ ReSocks lets you bring your own SOCKS5 proxy — residential, mobile, or third-p
 
 ![How ReSocks works](./public/images/how-it-works-en.svg)
 
-![Smart routing by app or website](./public/images/smart-routing-en.svg)
+**Set per-app and per-site rules so selected apps or domains route through the proxy, or go direct.**
 
-Set per-app and per-site rules so selected apps or domains route through the proxy while everything else connects directly.
+![Smart routing by app or website](./public/images/smart-routing-en.svg)
 
 The ReSocks client is built with Flutter for the UI and a C core for its networking engine, keeping the installer under 50 MB while running natively on macOS, Windows, Linux, Android, HarmonyOS, and iOS.
 
