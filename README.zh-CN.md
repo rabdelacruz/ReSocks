@@ -8,7 +8,7 @@
 
 ReSocks 让你可以带上自己的 SOCKS5 代理——无论是住宅代理、移动代理还是第三方代理——通过 TLS 加密的中转节点来访问它。你依然使用自己选择的出口节点，并可以自由决定哪些应用和网站走这条代理。
 
-**[ 下载 ReSocks](https://resocks.app/download)**
+**[ 下载 ReSocks](https://resocks.app/download?utm_source=github)**
 
 **设备 → TLS 中转 → 你的 SOCKS5 代理 → 互联网**
 
@@ -42,7 +42,7 @@ ReSocks 客户端基于 Flutter 构建界面，核心网络引擎使用 C 编写
 
 ### 了解更多
 
-更多信息、演示视频与下载，请访问 **[resocks.app](https://resocks.app)**。
+更多信息、演示视频与下载，请访问 **[resocks.app](https://resocks.app?utm_source=github)**。
 
 ## 自定义中转服务器（Relay Server）搭建指南
 
