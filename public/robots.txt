@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /user/
+
+Sitemap: https://resocks.app/sitemap_index.xml
