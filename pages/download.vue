@@ -482,6 +482,9 @@ const platformsData = computed(() => ({
       prerequisiteLabel: 'Please ensure you have the following:',
       prerequisites: ['Registered email account and password', 'Valid membership']
     },
+    note: locale.value === 'zh'
+      ? '由于系统限制，iOS 版本不支持按 APP 列表规则进行网络分流，只能按网站列表分流。'
+      : 'Due to iOS system restrictions, per-app routing rules are not supported — only domain/website-based routing rules are available.',
     downloads: locale.value === 'zh' ? [
       {
         label: '立即登录使用',

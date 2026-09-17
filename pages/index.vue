@@ -10,16 +10,14 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <!-- Left Content -->
           <div data-aos="fade-right">
-            <div class="inline-block px-4 py-1.5 bg-primary-50 text-primary-600 text-sm font-medium rounded-full mb-6">
-              {{ locale === 'zh' ? 'SOCKS5 中继 · TLS 安全中转' : 'A TLS relay for your SOCKS5 proxy' }}
-            </div>
+
             
             <h1 class="text-6xl md:text-7xl font-bold mb-6 text-gray-900 tracking-tight">
               ReSocks
             </h1>
 
             <p class="text-2xl md:text-3xl font-semibold text-primary-600 mb-6">
-              {{ locale === 'zh' ? '保留你的代理，换一条连接路径' : 'Your SOCKS5 proxy. A new path to it.' }}
+              {{ locale === 'zh' ? '随时随地中转您的 Socks5 代理' : 'Relay your Socks5 over TLS with TUN & app routing' }}
             </p>
 
             <div class="border-l-4 border-primary-600 bg-primary-50/60 rounded-r-lg px-5 py-4 mb-12">
@@ -46,7 +44,7 @@
               </div>
               <div class="flex items-start gap-3">
                 <div class="w-1.5 h-1.5 rounded-full bg-primary-600 mt-2.5 flex-shrink-0"></div>
-                <span class="text-lg text-gray-700">{{ locale === 'zh' ? '使用全球中继节点，年付或三年套餐还可自建中继' : 'Use global relays, or self-host with an Annual or 3-Year plan' }}</span>
+                <span class="text-lg text-gray-700">{{ locale === 'zh' ? '使用全球中继节点，或自建中继' : 'Use global relays, or self-host your own relay' }}</span>
               </div>
               <div class="flex items-start gap-3">
                 <div class="w-1.5 h-1.5 rounded-full bg-primary-600 mt-2.5 flex-shrink-0"></div>
@@ -319,7 +317,7 @@
               <i :class="activeFaq === index ? 'bi bi-chevron-up' : 'bi bi-chevron-down'" class="text-xl flex-shrink-0 ml-4 text-gray-400"></i>
             </button>
             <div v-if="activeFaq === index" class="px-8 pb-6">
-              <p class="text-gray-600 leading-relaxed">{{ faq.answer }}</p>
+              <p class="text-gray-600 leading-relaxed" v-html="faq.answer"></p>
             </div>
           </div>
         </div>
@@ -402,7 +400,7 @@ const useCases = computed(() => locale.value === 'zh' ? [
     "icon": "bi bi-house-fill"
   },
   {
-    "text": "在公共 Wi-Fi 等网络上，通过 TLS 保护设备到中继的流量。",
+    "text": "在公共 Wi-Fi 等网络上，通过 TLS 中继保护您的网络隐私。",
     "icon": "bi bi-shield-lock"
   },
   {
@@ -427,7 +425,7 @@ const useCases = computed(() => locale.value === 'zh' ? [
     "icon": "bi bi-house-fill"
   },
   {
-    "text": "You want TLS protection between your device and relay on public Wi-Fi.",
+    "text": "On public Wi-Fi and similar networks, a TLS relay protects your online privacy.",
     "icon": "bi bi-shield-lock"
   },
   {
@@ -462,7 +460,7 @@ const exclusiveFeatures = computed(() => locale.value === 'zh' ? [
       "在自己的服务器上部署 resocksrv",
       "自己管理中继路径"
     ],
-    "note": "适用于年付和三年套餐",
+    "note": "自己掌控中继路径",
     "icon": "bi bi-hdd-network-fill"
   },
   {
@@ -517,7 +515,7 @@ const exclusiveFeatures = computed(() => locale.value === 'zh' ? [
       "Deploy resocksrv on your server",
       "Manage the relay path yourself"
     ],
-    "note": "Available on Annual and 3-Year plans",
+    "note": "You manage the relay path",
     "icon": "bi bi-hdd-network-fill"
   },
   {
@@ -552,6 +550,16 @@ const exclusiveFeatures = computed(() => locale.value === 'zh' ? [
 // Target Users
 const targetUsers = computed(() => locale.value === 'zh' ? [
   {
+    "title": "本地网络受限的用户",
+    "description": "本地网络不支持使用 SOCKS5 代理时，通过中继换一条路径接入。",
+    "icon": "bi bi-wifi-off"
+  },
+  {
+    "title": "注重隐私的用户",
+    "description": "通过 TLS 保护设备到中继的连接。",
+    "icon": "bi bi-shield-lock"
+  },
+  {
     "title": "开发与测试",
     "description": "使用自己的代理测试应用、网站和地区访问。",
     "icon": "bi bi-code-slash"
@@ -580,18 +588,18 @@ const targetUsers = computed(() => locale.value === 'zh' ? [
     "title": "国际业务团队",
     "description": "为跨地区业务选择合适的代理与路由。",
     "icon": "bi bi-briefcase"
-  },
-  {
-    "title": "注重隐私的用户",
-    "description": "通过 TLS 保护设备到中继的连接。",
-    "icon": "bi bi-shield-lock"
-  },
-  {
-    "title": "多设备用户",
-    "description": "通过 HTTP/HTTPS 共享给兼容的局域网设备。",
-    "icon": "bi bi-share"
   }
 ] : [
+  {
+    "title": "Restricted local networks",
+    "description": "Your network doesn't support using a SOCKS5 proxy directly — reach it through a relay instead.",
+    "icon": "bi bi-wifi-off"
+  },
+  {
+    "title": "Privacy-conscious users",
+    "description": "Add TLS protection to the connection between your device and relay.",
+    "icon": "bi bi-shield-lock"
+  },
   {
     "title": "Developers and QA",
     "description": "Test apps, websites, and regional access through your own proxy.",
@@ -609,7 +617,7 @@ const targetUsers = computed(() => locale.value === 'zh' ? [
   },
   {
     "title": "Self-hosters",
-    "description": "Choose your own exit and, on eligible plans, host the relay too.",
+    "description": "Choose your own exit, and host the relay too.",
     "icon": "bi bi-server"
   },
   {
@@ -621,16 +629,6 @@ const targetUsers = computed(() => locale.value === 'zh' ? [
     "title": "International teams",
     "description": "Use the proxy and routing rules that fit your regional workflows.",
     "icon": "bi bi-briefcase"
-  },
-  {
-    "title": "Privacy-conscious users",
-    "description": "Add TLS protection to the connection between your device and relay.",
-    "icon": "bi bi-shield-lock"
-  },
-  {
-    "title": "Multi-device users",
-    "description": "Share an HTTP/HTTPS proxy with compatible LAN devices.",
-    "icon": "bi bi-share"
   }
 ]);
 
@@ -715,7 +713,7 @@ const platforms = computed(() => locale.value === 'zh' ? [
 const features = computed(() => locale.value === 'zh' ? [
   {
     "title": "灵活选择中继",
-    "description": "使用全球节点，或通过支持的套餐自建中继。",
+    "description": "使用全球节点，或自建中继。",
     "icon": "bi bi-globe2"
   },
   {
@@ -736,7 +734,7 @@ const features = computed(() => locale.value === 'zh' ? [
   },
   {
     "title": "局域网代理共享",
-    "description": "通过 HTTP/HTTPS 共享给兼容的电脑、电视或游戏机；暂不支持 SOCKS5 共享。",
+    "description": "支持本地 SOCKS5 代理，并可通过 HTTP/HTTPS 共享给局域网内兼容的电脑、电视或游戏机。",
     "icon": "bi bi-share",
     "bgClass": "bg-gray-600 text-white"
   },
@@ -762,7 +760,7 @@ const features = computed(() => locale.value === 'zh' ? [
 ] : [
   {
     "title": "A choice of relays",
-    "description": "Use global nodes, or host your own relay on an eligible plan.",
+    "description": "Use global nodes, or host your own relay.",
     "icon": "bi bi-globe2"
   },
   {
@@ -783,7 +781,7 @@ const features = computed(() => locale.value === 'zh' ? [
   },
   {
     "title": "LAN proxy sharing",
-    "description": "Share via HTTP/HTTPS with compatible laptops, TVs, or consoles. SOCKS5 sharing is not currently supported.",
+    "description": "Provides a local SOCKS5 proxy, plus LAN sharing via HTTP/HTTPS with compatible laptops, TVs, or consoles.",
     "icon": "bi bi-share",
     "bgClass": "bg-gray-600 text-white"
   },
@@ -833,11 +831,7 @@ const faqs = computed(() => locale.value === 'zh' ? [
   },
   {
     "question": "可以自建中继吗？",
-    "answer": "可以。年付和三年套餐支持部署并使用自己的 resocksrv 中继服务器，月付和半年套餐不支持。"
-  },
-  {
-    "question": "支持哪些代理共享方式？",
-    "answer": "目前支持 HTTP/HTTPS 局域网代理共享，暂不支持 SOCKS5 共享。其他设备或应用需要支持相应的代理设置。"
+    "answer": "是的，您可以自定义 relay 服务器，详见 <a href=\"https://resocks.app/zh/docs/resocksrv-setup\" class=\"text-primary-600 underline hover:text-primary-700\">resocksrv 搭建指南</a>。"
   },
   {
     "question": "一个账号能同时使用几台设备？",
@@ -866,11 +860,7 @@ const faqs = computed(() => locale.value === 'zh' ? [
   },
   {
     "question": "Can I host my own relay?",
-    "answer": "Yes. Annual and 3-Year plans support your own resocksrv relay. Monthly and 6-Month plans do not include custom relays."
-  },
-  {
-    "question": "Which sharing protocols are supported?",
-    "answer": "LAN Proxy Sharing supports HTTP/HTTPS. SOCKS5 sharing is not currently supported. The receiving device or app must support the proxy settings."
+    "answer": "Yes, you can use a custom relay server. See the <a href=\"https://resocks.app/docs/resocksrv-setup\" class=\"text-primary-600 underline hover:text-primary-700\">resocksrv setup guide</a> for details."
   },
   {
     "question": "How many devices can I use at once?",
